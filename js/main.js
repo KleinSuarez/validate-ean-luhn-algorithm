@@ -1,3 +1,3 @@
 function redirectTo(route) {
-    window.location.href = `${devURLBase}page/${route}.html`;
+    window.location.href = `${URLBase}page/${route}.html`;
 }
