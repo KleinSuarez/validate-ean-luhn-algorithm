@@ -23,7 +23,7 @@ function verifyEANCode(barCode) {
     if (barCode.length < 13) barCode = padLeft(barCode);
 
     let checkDigit = barCode.charAt(EAN_THIRTEEN_LENGTH - 1);
-    return verifyCheckDigit(checkDigit, barCode) == 'Si' ? `${verifyCheckDigit(checkDigit, barCode)} ${verifyCountry(barCode, countries)}` : `${verifyCheckDigit(checkDigit, barCode)}`;
+    return verifyCheckDigit(checkDigit, barCode) == 'Si' ? `${verifyCheckDigit(checkDigit, barCode)} ${verifyCountry(originalBarCode, countries)}` : `${verifyCheckDigit(checkDigit, barCode)}`;
 }
 
 function removeSpaces(barCode, countries) {
