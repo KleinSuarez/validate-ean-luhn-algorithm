@@ -7,18 +7,19 @@ window.onload = () => {
         event.preventDefault();
         let form = new FormData($form);
         let barCode = form.get('barCode');
+        let originalBarCode = barCode;
 
         inputValue = document.querySelector('.barCode');
         inputValue.value = barCode = padLeft(barCode);
 
         let result = document.querySelector('.result');
         if (barCode == 0) result.innerHTML = ''
-        else result.innerHTML = this.verifyEANCode(barCode);
+        else result.innerHTML = this.verifyEANCode(barCode, originalBarCode);
     })
 }
 
-function verifyEANCode(barCode) {
-    let originalBarCode = barCode;
+function verifyEANCode(barCode, originalBarCode) {
+    console.log(originalBarCode)
     if (barCode.includes(' ')) barCode = removeSpaces(barCode);
     if (barCode.length < 13) barCode = padLeft(barCode);
 
@@ -44,9 +45,10 @@ function verifyCheckDigit(checkDigit, barCode) {
     if (checkDigit !== calculatedDigit) return 'No';
 }
 
-function verifyCountry(barCode, countries) {
+function verifyCountry(originalBarCode, countries) {
+    
     let country = countries.map(country => {
-        if (barCode.slice(0, country.code.toString().length).includes(country.code)) return country.name
+        if (originalBarCode.slice(0, country.code.toString().length).includes(country.code)) return country.name
     }).filter(Boolean);
     return (country.length !== 0) ? country : 'Desconocido';
 }
