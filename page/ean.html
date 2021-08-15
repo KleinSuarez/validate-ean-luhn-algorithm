@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,9 +8,18 @@
     <link rel="stylesheet" href="../css/ean.css">
     <title>EAN13 Validator</title>
 </head>
+
 <body>
     <div class="container">
-    
+        <form action="" class="ean-form">
+            <label for="barCode">Ingrese el código EAN13</label>
+            <input pattern="[0-9 ]+" type="text" id="barCode" name="barCode" class="barCode" autocomplete="off" minlength="1">
+            <button class="validateButton" type="submit">Validar Código</button>
+        </form>
     </div>
+    <div class="result"></div>
+    <script type="text/javascript" src="../util/countries.js"></script>
+    <script type="text/javascript" src="../js/EANThirteen.js"></script>
 </body>
+
 </html>

@@ -1,13 +1,30 @@
-import { countries } from '../util/countries.js';
 const EAN_THIRTEEN_LENGTH = 13;
-let barCode = '5029365779425';
 
-if (barCode.includes(' ')) barCode = removeSpaces(barCode);
-if (barCode.length < 13) barCode = padLeft(barCode);
+window.onload = () => {
+    $form = document.querySelector('.ean-form');
 
-let checkDigit = barCode.charAt(EAN_THIRTEEN_LENGTH - 1)
+    $form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        let form = new FormData($form);
+        let barCode = form.get('barCode');
 
-console.log(`${verifyCheckDigit(checkDigit, barCode)} ${verifyCountry(barCode, countries)}`)
+        inputValue = document.querySelector('.barCode');
+        inputValue.value = barCode = padLeft(barCode);
+
+        let result = document.querySelector('.result');
+        if (barCode == 0) result.innerHTML = ''
+        else result.innerHTML = this.verifyEANCode(barCode);
+    })
+}
+
+function verifyEANCode(barCode) {
+    let originalBarCode = barCode;
+    if (barCode.includes(' ')) barCode = removeSpaces(barCode);
+    if (barCode.length < 13) barCode = padLeft(barCode);
+
+    let checkDigit = barCode.charAt(EAN_THIRTEEN_LENGTH - 1);
+    return verifyCheckDigit(checkDigit, barCode) == 'Si' ? `${verifyCheckDigit(checkDigit, barCode)} ${verifyCountry(barCode, countries)}` : `${verifyCheckDigit(checkDigit, barCode)}`;
+}
 
 function removeSpaces(barCode, countries) {
     return barCode.replace(/ /g, '');
@@ -22,16 +39,16 @@ function verifyCheckDigit(checkDigit, barCode) {
     let baseSum = sum.oddSum + sum.evenSum * 3;
     let calculatedDigit = ((roundedSum(sum) - baseSum) >= 10) ? 0 : (roundedSum(sum) - baseSum);
 
-    if (baseSum == 0 && roundSum == 0) return '';
-    if (checkDigit == calculatedDigit) return 'YES';
-    if (checkDigit !== calculatedDigit) return 'NO';
+    if (baseSum == 0) return '';
+    if (checkDigit == calculatedDigit) return 'Si';
+    if (checkDigit !== calculatedDigit) return 'No';
 }
 
 function verifyCountry(barCode, countries) {
     let country = countries.map(country => {
         if (barCode.slice(0, country.code.toString().length).includes(country.code)) return country.name
     }).filter(Boolean);
-    return country;
+    return (country.length !== 0) ? country : 'Desconocido';
 }
 
 function sumDigits(barCode) {
