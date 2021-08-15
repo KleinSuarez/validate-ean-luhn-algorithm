@@ -14,21 +14,16 @@ window.onload = () => {
 
         let result = document.querySelector('.result');
         if (barCode == 0) result.innerHTML = ''
-        else result.innerHTML = this.verifyEANCode(barCode, originalBarCode);
+        else (barCode.length > EAN_THIRTEEN_LENGTH) ? result.innerHTML = `<label style="color:#991B1B">longitud mayor a la esperada</label>` : result.innerHTML = this.verifyEANCode(barCode, originalBarCode);
     })
 }
 
 function verifyEANCode(barCode, originalBarCode) {
-    console.log(originalBarCode)
     if (barCode.includes(' ')) barCode = removeSpaces(barCode);
     if (barCode.length < 13) barCode = padLeft(barCode);
 
     let checkDigit = barCode.charAt(EAN_THIRTEEN_LENGTH - 1);
     return verifyCheckDigit(checkDigit, barCode) == 'Si' ? `${verifyCheckDigit(checkDigit, barCode)} ${verifyCountry(originalBarCode, countries)}` : `${verifyCheckDigit(checkDigit, barCode)}`;
-}
-
-function removeSpaces(barCode, countries) {
-    return barCode.replace(/ /g, '');
 }
 
 function padLeft(barCode) {
@@ -46,7 +41,7 @@ function verifyCheckDigit(checkDigit, barCode) {
 }
 
 function verifyCountry(originalBarCode, countries) {
-    
+
     let country = countries.map(country => {
         if (originalBarCode.slice(0, country.code.toString().length).includes(country.code)) return country.name
     }).filter(Boolean);

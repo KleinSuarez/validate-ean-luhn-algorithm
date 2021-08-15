@@ -6,13 +6,13 @@ window.onload = () => {
         event.preventDefault();
         let form = new FormData($form);
         let cardCode = form.get('cardCode');
+        if (cardCode.includes(' ')) cardCode = removeSpaces(cardCode);
 
         let result = document.querySelector('.result');
         if (cardCode == 0) result.innerHTML = ''
-        else result.innerHTML = this.validateCreditCard(cardCode);
+        else (cardCode.length !== CARD_CODE_LENGTH) ? result.innerHTML = `<label style="color:#991B1B">código no válido</label>` : result.innerHTML = this.validateCreditCard(cardCode);
     })
 }
-
 
 function validateCreditCard(cardCode) {
     let sumDigits = 0;

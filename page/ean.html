@@ -5,19 +5,25 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/ean.css">
+    <link rel="stylesheet" href="../css/form-validator.css">
     <title>EAN13 Validator</title>
 </head>
 
 <body>
     <div class="container">
-        <form action="" class="ean-form">
-            <label for="barCode">Ingrese el código EAN13</label>
-            <input pattern="[0-9 ]+" type="text" id="barCode" name="barCode" class="barCode" autocomplete="off" minlength="1">
-            <button class="validateButton" type="submit">Validar Código</button>
+        <form action="" class="ean-form form">
+            <h4>ALGORITMO EAN13</h4>
+            <p>Ingresa el código de barras </p>
+            <input pattern="[0-9 ]+" type="text" id="barCode" name="barCode" class="barCode" autocomplete="off"
+                minlength="1" placeholder="0000000000000">
+            <div class="btn-content">
+                <button class="validateButton" type="submit">Validar Código</button>
+            </div>
+            <div class="result"></div>
         </form>
+
     </div>
-    <div class="result"></div>
+    <script src="../util/validate.js"></script>
     <script type="text/javascript" src="../util/countries.js"></script>
     <script type="text/javascript" src="../js/EANThirteen.js"></script>
 </body>

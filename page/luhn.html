@@ -5,20 +5,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/luhn.css">
+    <link rel="stylesheet" href="../css/form-validator.css">
     <title>Validación Luhn</title>
 </head>
 
 <body>
     <div class="container">
-        <form action="" class="luhn-form">
-            <label for="barCode">Ingrese el código</label>
+        <form action="" class="luhn-form form">
+            <h4 >ALGORITMO LUHN</h4>
+            <P>Ingresa el código de la tarjeta a validar</P>
             <input pattern="[0-9 ]+" type="text" id="cardCode" name="cardCode" class="cardCode" autocomplete="off"
-                minlength="1">
-            <button class="validateButton" type="submit">Validar Código</button>
+                minlength="1" placeholder="0000000000000000">
+            <div class="btn-content">
+                <button class="validateButton" type="submit">Validar Código</button>
+            </div>
+            <div class="result"></div>
         </form>
     </div>
-    <div class="result"></div>
+    <script src="../util/validate.js"></script>
     <script src="../util/Card.js"></script>
     <script src="../js/Luhn.js"></script>
 </body>

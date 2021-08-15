@@ -26,3 +26,25 @@ body {
     width: 90vw;
     margin: 5em auto;
 }
+
+.btn-content button {
+    color: var(--font-color);
+    outline: none;
+    border: none;
+    width: 70%;
+    font-size: 1.75rem;
+    background-color: var(--primary-color);
+    height: 3em;
+    border-radius: 0.5em;
+    font-weight: semi-bold;
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+.btn-content button:hover {
+    opacity: 1;
+}
+
+h4 {
+    font-size: 3rem;
+}
