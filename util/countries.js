@@ -1,4 +1,4 @@
-let countries = [
+const countries = [
     {
         code: 0, name: 'EEUU'
     },
@@ -27,5 +27,3 @@ let countries = [
         code: 890, name: 'India'
     }
 ]
-
-export { countries }
