@@ -31,7 +31,7 @@ body {
     color: var(--font-color);
     outline: none;
     border: none;
-    width: 70%;
+    width: 10em;
     font-size: 1.75rem;
     background-color: var(--primary-color);
     height: 3em;
