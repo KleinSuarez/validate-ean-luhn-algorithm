@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/luhn.css">
+    <title>Validación Luhn</title>
+</head>
+
+<body>
+    <div class="container">
+        <form action="" class="luhn-form">
+            <label for="barCode">Ingrese el código</label>
+            <input pattern="[0-9 ]+" type="text" id="cardCode" name="cardCode" class="cardCode" autocomplete="off"
+                minlength="1">
+            <button class="validateButton" type="submit">Validar Código</button>
+        </form>
+    </div>
+    <div class="result"></div>
+    <script src="../util/Card.js"></script>
+    <script src="../js/Luhn.js"></script>
+</body>
+
+</html>
