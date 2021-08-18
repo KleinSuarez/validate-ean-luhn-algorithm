@@ -1,3 +1,7 @@
+/**
+ * @type {Array} list of available countries for validation purposes
+ */
+
 const countries = [
     {
         code: 0, name: 'EEUU'
